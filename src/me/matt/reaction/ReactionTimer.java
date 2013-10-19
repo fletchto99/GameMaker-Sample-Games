@@ -1,4 +1,4 @@
-package reaction;
+package me.matt.reaction;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
+
 
 import me.matt.gamemaker.GameSettings;
 import me.matt.gamemaker.game.Game;

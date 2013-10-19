@@ -1,3 +1,4 @@
+package me.matt.games;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;

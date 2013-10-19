@@ -1,4 +1,4 @@
-package reaction;
+package me.matt.reaction;
 
 /**
  * A Timer

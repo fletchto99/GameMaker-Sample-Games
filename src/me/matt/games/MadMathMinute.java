@@ -1,3 +1,4 @@
+package me.matt.games;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
