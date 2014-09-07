@@ -14,22 +14,20 @@ import javax.swing.JOptionPane;
 import me.matt.gamemaker.GameSettings;
 import me.matt.gamemaker.game.Game;
 
-public class ReactionTimer extends Game {
+public class ReactionGame extends Game {
 
 	private int test = 0;
 	private int state = 0;
 	private long start = -1;
 	private long end = -1;
 	private long[] times = new long[3];
-	private long[] avrages = new long[2];
+	private long[] averages = new long[2];
 	Rectangle button = new Rectangle(100, 300, 200, 50);
 	String buttonText = "Start visual test 1";
 	Color color = Color.BLACK;
 
 	@Override
 	public void onDisable() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -101,7 +99,7 @@ public class ReactionTimer extends Game {
 			buttonText = "Start visual test " + (test + 1);
 			state = 1;
 			if (test == 3) {
-				avrages[0] = ((times[0] + times[1] + times[2]) / 3);
+				averages[0] = ((times[0] + times[1] + times[2]) / 3);
 				state = 3;
 				test = 0;
 				times = new long[3];
@@ -138,11 +136,11 @@ public class ReactionTimer extends Game {
 			}
 			break;
 		case 5:
-			avrages[1] = ((times[0] + times[1] + times[2]) / 3);
+			averages[1] = ((times[0] + times[1] + times[2]) / 3);
 			JOptionPane.showMessageDialog(null,
-					"Your avrage reaction time for visual is " + avrages[0]
-							+ "ms and Your avrage reaction time for audio is "
-							+ avrages[1] + "ms");
+					"Your average reaction time for visual is " + averages[0]
+							+ "ms and Your average reaction time for audio is "
+							+ averages[1] + "ms");
 			break;
 		}
 
@@ -155,8 +153,7 @@ public class ReactionTimer extends Game {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Reaction Game";
 	}
 
 	@Override
