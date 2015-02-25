@@ -12,42 +12,42 @@ import me.matt.mousefx.entity.Entity;
 
 public class MouseTail extends MouseEffect {
 
-	List<Entity> entities = new ArrayList<Entity>();
+    List<Entity> entities = new ArrayList<Entity>();
 
-	@Override
-	public void render(Graphics graphics) {
-		update();
-		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
-			if (entity != null) {
-				entity.render(graphics);
-			}
-		}
-	}
+    @Override
+    public void mouseDragged(final MouseEvent event) {
+        entities.add(new TailParticle(event.getX(), event.getY(), Color.RED));
+    }
 
-	public void update() {
-		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
-			if ((entity == null) || (!entity.isAlive())) {
-				entities.remove(entity);
-			}
-		}
-		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
-			if (entity != null) {
-				entity.update();
-			}
-		}
-	}
+    @Override
+    public void mouseMoved(final MouseEvent event) {
+        entities.add(new TailParticle(event.getX(), event.getY(), Color.GREEN));
+    }
 
-	@Override
-	public void mouseMoved(MouseEvent event) {
-		entities.add(new TailParticle(event.getX(), event.getY(), Color.GREEN));
-	}
+    @Override
+    public void render(final Graphics graphics) {
+        this.update();
+        for (int i = 0; i < entities.size(); i++) {
+            final Entity entity = entities.get(i);
+            if (entity != null) {
+                entity.render(graphics);
+            }
+        }
+    }
 
-	@Override
-	public void mouseDragged(MouseEvent event) {
-		entities.add(new TailParticle(event.getX(), event.getY(), Color.RED));
-	}
+    public void update() {
+        for (int i = 0; i < entities.size(); i++) {
+            final Entity entity = entities.get(i);
+            if ((entity == null) || (!entity.isAlive())) {
+                entities.remove(entity);
+            }
+        }
+        for (int i = 0; i < entities.size(); i++) {
+            final Entity entity = entities.get(i);
+            if (entity != null) {
+                entity.update();
+            }
+        }
+    }
 
 }

@@ -10,29 +10,29 @@ import me.matt.mousefx.effect.MouseEffect;
 
 public class CrossHair extends MouseEffect {
 
-	private Point point;
+    private Point point;
 
-	@Override
-	public void render(Graphics graphics) {
-		Rectangle bounds = graphics.getClipBounds();
-		graphics.setColor(Color.WHITE);
-		if (point != null) {
-			graphics.drawLine((int) point.getX(), 0, (int) point.getX(),
-					bounds.height);
-			graphics.drawLine(0, (int) point.getY(), bounds.width,
-					(int) point.getY());
-		}
-	}
+    @Override
+    public void mouseDragged(final MouseEvent event) {
+        point = event.getPoint();
 
-	@Override
-	public void mouseMoved(MouseEvent event) {
-		point = event.getPoint();
-	}
+    }
 
-	@Override
-	public void mouseDragged(MouseEvent event) {
-		point = event.getPoint();
+    @Override
+    public void mouseMoved(final MouseEvent event) {
+        point = event.getPoint();
+    }
 
-	}
+    @Override
+    public void render(final Graphics graphics) {
+        final Rectangle bounds = graphics.getClipBounds();
+        graphics.setColor(Color.WHITE);
+        if (point != null) {
+            graphics.drawLine((int) point.getX(), 0, (int) point.getX(),
+                    bounds.height);
+            graphics.drawLine(0, (int) point.getY(), bounds.width,
+                    (int) point.getY());
+        }
+    }
 
 }

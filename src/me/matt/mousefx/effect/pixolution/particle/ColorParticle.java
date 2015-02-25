@@ -8,61 +8,62 @@ import me.matt.mousefx.entity.Entity;
 
 public class ColorParticle extends Entity {
 
-	private static final Random random = new Random();
+    private static final Random random = new Random();
 
-	private double xx;
-	private double yy;
-	private double zz;
+    private double xx;
+    private double yy;
+    private double zz;
 
-	private double vx;
-	private double vy;
-	private double vz;
+    private double vx;
+    private double vy;
+    private double vz;
 
-	private Color color;
+    private Color color;
 
-	public ColorParticle(int x, int y) {
-		super(x, y);
-		color = new Color(random.nextInt(255), random.nextInt(255),
-				random.nextInt(255), 255);
-		xx = x;
-		yy = y;
-		zz = 2;
+    public ColorParticle(final int x, final int y) {
+        super(x, y);
+        color = new Color(ColorParticle.random.nextInt(255),
+                ColorParticle.random.nextInt(255),
+                ColorParticle.random.nextInt(255), 255);
+        xx = x;
+        yy = y;
+        zz = 2;
 
-		vx = random.nextGaussian() * 0.6;
-		vy = random.nextGaussian() * 0.4;
-		vz = random.nextFloat() * 0.7 + 4;
-	}
+        vx = ColorParticle.random.nextGaussian() * 0.6;
+        vy = ColorParticle.random.nextGaussian() * 0.4;
+        vz = ColorParticle.random.nextFloat() * 0.7 + 4;
+    }
 
-	@Override
-	public void update() {
-		if (++lifespan >= 120) {
-			destroy();
-			return;
-		}
+    @Override
+    public void render(final Graphics graphics) {
+        graphics.setColor(color);
+        graphics.fillRect(x - 1, y, 2, 2);
+    }
 
-		color = new Color(color.getRed(), color.getGreen(), color.getBlue(),
-				(int) (255 - (255 * (lifespan / 120D))));
+    @Override
+    public void update() {
+        if (++lifespan >= 120) {
+            this.destroy();
+            return;
+        }
 
-		xx += vx;
-		yy += vy;
-		zz += vz;
+        color = new Color(color.getRed(), color.getGreen(), color.getBlue(),
+                (int) (255 - (255 * (lifespan / 120D))));
 
-		if (zz < 0) {
-			zz = 0;
-			vx *= 1.2;
-			vy *= 1.2;
-			vz *= -1.0;
-		}
+        xx += vx;
+        yy += vy;
+        zz += vz;
 
-		vz -= 0.15;
+        if (zz < 0) {
+            zz = 0;
+            vx *= 1.2;
+            vy *= 1.2;
+            vz *= -1.0;
+        }
 
-		x = (int) xx;
-		y = (int) yy;
-	}
+        vz -= 0.15;
 
-	@Override
-	public void render(Graphics graphics) {
-		graphics.setColor(color);
-		graphics.fillRect(x - 1, y, 2, 2);
-	}
+        x = (int) xx;
+        y = (int) yy;
+    }
 }
